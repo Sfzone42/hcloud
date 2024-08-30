@@ -1,4 +1,3 @@
-```markdown
 # HCLOUD
 
 HCLOUD é uma biblioteca em C para facilitar a criação de um cliente e servidor de rede básico, com suporte para operações de envio e recebimento de arquivos, processamento de comandos e mensagens, e gerenciamento de conexões de clientes.
