@@ -97,13 +97,13 @@ Certifique-se de que a estrutura de diretórios seja a seguinte:
 
 ```
 /projeto
-|-- www
-|   |-- index.html
-|-- server.c
-|-- client.c
-|-- Makefile
-|-- libhcloud.a (ou os arquivos necessários para compilar a lib)
-|-- hcloud.h
+|__ www
+   |-- index.html
+|__ server.c
+|__ client.c
+|__ Makefile
+|__ libhcloud.a (ou os arquivos necessários para compilar a lib)
+|__ hcloud.h
 ```
 
 ### Compilação e Execução:
