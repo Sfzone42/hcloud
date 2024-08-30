@@ -1,4 +1,4 @@
-Aqui está um pequeno exemplo para testar o servidor e o cliente utilizando as funções que desenvolvemos. Esse exemplo inclui uma função `serve_directory` no servidor e uma função `send_request` no cliente para solicitar um arquivo específico do servidor.
+Aqui está um pequeno exemplo para testar o servidor e o cliente utilizando as funções que desenvolvemos. Esse exemplo inclui uma função `serve_directory` no servidor e uma função `http_send` no cliente para solicitar um arquivo específico do servidor.
 
 ### Arquivos:
 
@@ -18,7 +18,7 @@ void start_server()
     socklen_t client_len = sizeof(client_addr);
     int client_socket;
 
-    create_server_socket(&server, "127.0.0.1");
+    create_server(&server, "127.0.0.1");
     printf("Servidor iniciado em 127.0.0.1 na porta %d\n", PORTP);
 
     while (1)
