@@ -123,6 +123,6 @@ Distribuído sob a Licença MIT. Veja `LICENSE` para mais informações.
 Seu Nome - **Liedson Habacuc** [liedsonnhabacuc@gmail.com]
 
 Link do Repositório: [https://github.com/Sfzone42/hcloud](https://github.com/Sfzone42/hcloud)
-```
+```makefile
   CFLAGS = -I. -L. -lhcloud -lreadline
   $(CFLAGS)
