@@ -121,7 +121,7 @@ void	process_message(int client_socket, const char *username, const char *messag
 	send_data(client_socket, "200 OK: Mensagem recebida\n");
 }
 
-void	process_request(int client_socket, const char *request)
+void	request(int client_socket, const char *request)
 {
 	char method[10];
 	char path[BUFFER_SIZE];
@@ -158,3 +158,56 @@ void	process_request(int client_socket, const char *request)
 		send_data(client_socket, "405 Method Not Allowed\n");
 }
 
+void	process_request(int client_socket, const char *request)
+{
+	char buffer[BUFFER_SIZE];
+	char method[10], path[BUFFER_SIZE], prev[10], username[BUFFER_SIZE];
+	int read_size;
+
+	memset(method, 0, sizeof(method));
+	memset(path, 0, sizeof(path));
+	memset(prev, 0, sizeof(prev));
+	memset(username, 0, sizeof(username));
+	(void)request;
+	read_size = read(client_socket, buffer, sizeof(buffer) - 1);
+	if (read_size <= 0)
+	{
+		perror("Erro ao ler a requisição");
+		close(client_socket);
+		return ;
+	}
+
+	buffer[read_size] = '\0';
+
+	sscanf(buffer, "%9[^:]:%1023[^:]:%9[^:]:%1023[^\n]", method, path, prev, username);
+
+	if (strcmp(method, "GET") == 0)
+	{
+		printf("Recebido GET: %s\n", path);
+		send_file(client_socket, path);
+	}
+	else if (strcmp(method, "POST") == 0)
+	{
+		printf("Recebido POST: %s\n", path);
+		receive_file(client_socket, path);
+	}
+	else if (strcmp(method, "CMD") == 0)
+		printf("Recebido CMD: %s\n", path);
+	else if (strcmp(method, "DWN") == 0)
+	{
+		printf("Recebido DWN: %s\n", path);
+		send_file(client_socket, path);
+	}
+	else if (strcmp(method, "msg") == 0)
+	{
+		printf("Recebido msg: %s\n", path);
+		process_message(client_socket, username, path);
+	}
+	else
+	{
+		printf("Método desconhecido: %s\n", method);
+		const char *error_msg = "Método não reconhecido";
+		write(client_socket, error_msg, strlen(error_msg));
+	}
+	close(client_socket);
+}
