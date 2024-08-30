@@ -95,6 +95,56 @@ void	send_file(int client_socket, const char *file_path)
 	printf("Arquivo enviado com sucesso\n");
 }
 
+void	send_request(t_client *client, const char *data)
+{
+	struct sockaddr_in server_addr;
+	char	request[BUFFER_SIZE * 2];
+	char	buffer[BUFFER_SIZE];
+	int		bytes_read;
+
+	client->client_socket = socket(AF_INET, SOCK_STREAM, 0);
+	if (client->client_socket == -1)
+	{
+		perror("Erro ao criar socket");
+		exit(EXIT_FAILURE);
+	}
+
+	server_addr.sin_family = AF_INET;
+	server_addr.sin_port = htons(PORTP);
+	server_addr.sin_addr.s_addr = inet_addr(client->ip);
+
+	if (connect(client->client_socket, (struct sockaddr *)&server_addr, sizeof(server_addr)) == -1)
+	{
+		perror("Erro ao conectar");
+		close(client->client_socket);
+		exit(EXIT_FAILURE);
+	}
+
+	if (strcmp(client->method, "POST") == 0 || strcmp(client->method, "PUT") == 0 || strcmp(client->method, "CMD") == 0)
+	{
+		snprintf(request, sizeof(request), "%s %s HTTP/1.1\r\n"
+			"Host: %s\r\n"
+			"Content-Length: %lu\r\n"
+			"\r\n"
+			"%s", client->method, client->path, client->ip, strlen(data), data);
+	}
+	else 
+	{
+		snprintf(request, sizeof(request), "%s %s HTTP/1.1\r\n"
+			"Host: %s\r\n"
+			"\r\n", client->method, client->path, client->ip);
+	}
+
+	write(client->client_socket, request, strlen(request));
+	while ((bytes_read = read(client->client_socket, buffer, BUFFER_SIZE - 1)) > 0)
+	{
+		buffer[bytes_read] = '\0';
+		printf("%s", buffer);
+	}
+	close(client->client_socket);
+}
+
+
 void	apply_each_client(void (*func)(int))
 {
 	int	i;
@@ -131,5 +181,46 @@ void	add_client(int cl)
 		client[i] = cl;
 		client_exists++;
 	}
+}
+
+void	serve_directory(int client_socket, const char *directory, const char *request_path)
+{
+	char filepath[BUFFER_SIZE];
+	char buffer[BUFFER_SIZE];
+	int file_fd;
+	ssize_t bytes_read;
+
+	snprintf(filepath, sizeof(filepath), "%s%s", directory, request_path);
+
+	struct stat file_stat;
+	if (stat(filepath, &file_stat) == -1 || !S_ISREG(file_stat.st_mode))
+	{
+		const char *not_found_response = "HTTP/1.1 404 Not Found\r\n"
+		"Content-Type: text/html\r\n"
+		"\r\n"
+		"<html><body><h1>404 Not Found</h1></body></html>";
+		write(client_socket, not_found_response, strlen(not_found_response));
+		return;
+	}
+
+	file_fd = open(filepath, O_RDONLY);
+	if (file_fd == -1)
+	{
+		const char *internal_error_response = "HTTP/1.1 500 Internal Server Error\r\n"
+		"Content-Type: text/html\r\n"
+		"\r\n"
+		"<html><body><h1>500 Internal Server Error</h1></body></html>";
+		write(client_socket, internal_error_response, strlen(internal_error_response));
+		return;
+	}
+
+	const char *ok_response = "HTTP/1.1 200 OK\r\n"
+		"Content-Type: text/html\r\n"
+		"\r\n";
+	write(client_socket, ok_response, strlen(ok_response));
+
+	while ((bytes_read = read(file_fd, buffer, sizeof(buffer))) > 0)
+		write(client_socket, buffer, bytes_read);
+	close(file_fd);
 }
 

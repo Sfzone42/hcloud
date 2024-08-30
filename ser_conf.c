@@ -211,3 +211,29 @@ void	process_request(int client_socket, const char *request)
 	}
 	close(client_socket);
 }
+
+void	http_request(int client_socket, const char *request)
+{
+	char *method;
+	char *path;
+	char buffer[BUFFER_SIZE];
+
+	method = strtok((char *)request, " ");
+	path = strtok(NULL, " ");
+	if (method && path)
+	{
+		if (strcmp(method, "GET") == 0)
+			serve_directory(client_socket, "./www", path);
+		else
+		{
+			snprintf(buffer, sizeof(buffer), "HTTP/1.1 405 Method Not Allowed\r\n\r\n");
+			write(client_socket, buffer, strlen(buffer));
+		}
+	}
+	else
+	{
+		snprintf(buffer, sizeof(buffer), "HTTP/1.1 400 Bad Request\r\n\r\n");
+		write(client_socket, buffer, strlen(buffer));
+	}
+	close(client_socket);
+}
