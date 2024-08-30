@@ -51,8 +51,7 @@ int main(void)
 
     // Envie um comando para o servidor
     process_command(&client, "GET /index.html");
-
-    return 0;
+    return (0);
 }
 ```
 
@@ -65,7 +64,6 @@ int main(void)
 {
     t_server server;
     ceate_server(&server, "10.0.0.0");
-
     // Processa requisições de clientes
     while (1)
     {
@@ -76,8 +74,7 @@ int main(void)
             close(client_socket);
         }
     }
-
-    return 0;
+    return (0);
 }
 ```
 
