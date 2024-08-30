@@ -98,6 +98,9 @@ int main(void)
 
 - **`void process_request(int client_socket, const char *request);`**  
   Processa uma requisição recebida do cliente.
+- **`antes de executar`**
+-   ``` export SERVER_PORT=9090
+    ```
 
 ## Contribuição
 
