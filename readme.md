@@ -101,6 +101,7 @@ int main(void)
 - **`antes de executar`**
 -   ```bash
     export SERVER_PORT=9090
+    # sua porta
     ```
 
 ## Contribuição
