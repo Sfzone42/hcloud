@@ -18,8 +18,8 @@ void start_server()
     socklen_t client_len = sizeof(client_addr);
     int client_socket;
 
-    create_server(&server, "127.0.0.1");
-    printf("Servidor iniciado em 127.0.0.1 na porta %d\n", PORTP);
+    create_server(&server, "100.1.1.1");
+    printf("Servidor iniciado em 100.1.1.1 na porta %d\n", PORTP);
 
     while (1)
     {
@@ -59,9 +59,9 @@ int main()
 int main()
 {
     t_client client;
-    configure_client(&client, "127.0.0.1");
+    configure_client(&client, "100.1.1.1");
 
-    const char *request = "GET /index.html HTTP/1.1\r\nHost: 127.0.0.1\r\n\r\n";
+    const char *request = "GET /index.html HTTP/1.1\r\nHost: 100.1.1.1\r\n\r\n";
     http_send(&client, request);
 
     return 0;
