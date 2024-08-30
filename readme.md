@@ -104,16 +104,6 @@ int main(void)
     # sua porta
     ```
 
-## Contribuição
-
-Contribuições são bem-vindas! Para contribuir, por favor, siga as etapas abaixo:
-
-1. Faça um fork do repositório.
-2. Crie uma branch para sua feature (`git checkout -b feature-nome`).
-3. Faça commit das suas mudanças (`git commit -am 'Add new feature'`).
-4. Envie a branch para o repositório (`git push origin feature-nome`).
-5. Crie um Pull Request.
-
 ## Licença
 
 Distribuído sob a Licença MIT. Veja `LICENSE` para mais informações.
