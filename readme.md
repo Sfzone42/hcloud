@@ -48,7 +48,7 @@ Para usar a biblioteca, inclua o cabeçalho `hcloud.h` e link a biblioteca está
 int main(void)
 {
     t_client client;
-    configure_client(&client, "127.0.0.1");
+    configure_client(&client, "10.0.0.0");
 
     // Envie um comando para o servidor
     process_command(&client, "GET /index.html");
@@ -65,7 +65,7 @@ int main(void)
 int main(void)
 {
     t_server server;
-    ceate_server(&server, "127.0.0.1");
+    ceate_server(&server, "10.0.0.0");
 
     // Processa requisições de clientes
     while (1)
