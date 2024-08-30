@@ -119,4 +119,5 @@ Seu Nome - [liedsonnhabacuc@example.com](em:lisvaldosf@example.com)
 
 Link do Repositório: [https://github.com/Sfzone42/hcloud](https://github.com/Sfzone42/hcloud)
 ```
-
+   -I. -L. -lhcloud -lreadline
+$(CFLAGS)
