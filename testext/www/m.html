@@ -3,60 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Interativo e Robusto</title>
+    <title>SFznoe liedson</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #f4f4f4;
             color: #333;
             scroll-behavior: smooth;
         }
         header {
-            background-color: #4CAF50;
+            background-color: #333;
             color: white;
             padding: 15px 20px;
-            text-align: center;
             position: fixed;
             width: 100%;
             top: 0;
             left: 0;
             z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+        header.scrolled {
+            background-color: #222;
         }
         nav {
-            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         nav a {
             color: white;
-            padding: 10px 20px;
+            padding: 15px 20px;
             text-decoration: none;
             font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
         }
         nav a:hover {
-            background-color: #45a049;
+            background-color: #555;
             border-radius: 5px;
+            transform: scale(1.05);
         }
         .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 130px;
-        }
-        h1 {
-            color: #4CAF50;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+		max-width: 1200px;
+		margin: 20px auto;
+		padding: 20px;
+		background-color: white;
+		border-radius: 8px;
+		box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+		margin-top: 140px;
+	}
+        h1, h2 {
+            color: #333;
+            margin-top: 0;
         }
         .slider {
             position: relative;
@@ -64,19 +64,23 @@
             margin: 20px 0;
             overflow: hidden;
             border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
         }
         .slides {
             display: flex;
-            transition: transform 0.5s ease-in-out;
+            transition: transform 1s ease;
         }
         .slide {
             min-width: 100%;
             box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease;
         }
-        .slide img {
-            width: 100%;
-            height: auto;
-            display: block;
+        .slide.active {
+            opacity: 1;
         }
         .slider .nav-buttons {
             position: absolute;
@@ -85,25 +89,29 @@
             display: flex;
             justify-content: space-between;
             transform: translateY(-50%);
+            z-index: 10;
         }
         .slider .nav-buttons button {
             background-color: rgba(0, 0, 0, 0.5);
             border: none;
             color: white;
-            padding: 10px;
+            padding: 12px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 24px;
+            transition: background-color 0.3s, transform 0.3s;
         }
         .slider .nav-buttons button:hover {
             background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
         }
         .slider .indicators {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 100px;
+            margin: 150px auto;
         }
         .slider .indicators span {
-            height: 10px;
-            width: 10px;
+            height: 12px;
+            width: 12px;
             margin: 0 5px;
             background-color: #bbb;
             border-radius: 50%;
@@ -111,91 +119,182 @@
             transition: background-color 0.6s ease;
         }
         .slider .indicators .active {
-            background-color: #4CAF50;
-        }
-        .button-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
-        .button:hover {
-            background-color: #45a049;
+            background-color: #333;
         }
         .contact-form {
             max-width: 600px;
             margin: auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         }
         .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 10px;
+            width: calc(100% - 22px);
+            padding: 12px;
             margin: 10px 0;
             border: 1px solid #ddd;
             border-radius: 5px;
             box-sizing: border-box;
         }
         .contact-form button {
-            background-color: #4CAF50;
+            background-color: #333;
             color: white;
-            padding: 10px;
+            padding: 12px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s, transform 0.3s;
         }
         .contact-form button:hover {
-            background-color: #45a049;
+            background-color: #555;
+            transform: scale(1.05);
         }
-        .services, .testimonials {
+        .services, .testimonials, .portfolio, .blog {
             background-color: #fff;
             border-radius: 8px;
             padding: 20px;
             margin: 20px 0;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         }
-        .services h2, .testimonials h2 {
-            color: #4CAF50;
+        .services {
+	    background-color: #fff;
+	    border-radius: 8px;
+	    padding: 20px;
+	    margin: 20px auto;
+	    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+	    max-width: 1200px;
+	}
+        .services ul, .blog ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .services li, .blog li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .blog {
+            margin: 20px auto;
+        }
+        .services li:last-child, .blog li:last-child {
+            border-bottom: none;
         }
         .testimonials blockquote {
-            border-left: 4px solid #4CAF50;
+            border-left: 4px solid #333;
             padding-left: 20px;
             margin: 10px 0;
             font-style: italic;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .testimonials {
+            margin: 20px auto;
+        }
+	.portfolio {
+	    background-color: #fff;
+	    border-radius: 8px;
+	    padding: 20px;
+	    margin: 20px auto;
+	    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+	    text-align: center;
+	}
+
+        .portfolio-grid {
+            display: flex;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .portfolio-item {
+            box-sizing: border-box;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s;
+        }
+        .portfolio-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .blog-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .blog-article {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .blog-article h3 {
+            margin: 0 0 10px;
+        }
+        .load-more {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .load-more button {
+            background-color: #333;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .load-more button:hover {
+            background-color: #555;
+        }
+        @media (max-width: 768px) {
+            .portfolio-item {
+                max-width: calc(50% - 20px);
+            }
+        }
+        @media (max-width: 480px) {
+            .portfolio-item {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Meu Site Interativo</h1>
+    <header id="header">
+        <h1>SFznoe liedson</h1>
         <nav>
             <a href="#home">Início</a>
             <a href="#about">Sobre</a>
             <a href="#services">Serviços</a>
+            <a href="#portfolio">Portfólio</a>
+            <a href="#blog">Blog</a>
             <a href="#testimonials">Testemunhos</a>
             <a href="#contact">Contato</a>
         </nav>
     </header>
     <div id="home" class="container">
-        <h2>Bem-vindo ao Meu Site</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla interdum mauris eu erat gravida, id sollicitudin sem condimentum.</p>
-
+        <h2>Bem-vindo ao Meu Site!</h2>
         <div class="slider">
             <div class="slides">
-                <div class="slide"><img src="carro1.jpg" alt="carro 1"></div>
-                <div class="slide"><img src="m42.jpg" alt="numero 2"></div>
-                <div class="slide"><img src="novo.jpg" alt="ano 3"></div>
+                <div class="slide active">
+                    <img src="m42.jpg" alt="Slide 1">
+                </div>
+                <div class="slide">
+                    <img src="carro1.jpg" alt="Slide 2">
+                </div>
+                <div class="slide">
+                    <img src="novo.jpg" alt="Slide 3">
+                </div>
             </div>
             <div class="nav-buttons">
-                <button onclick="prevSlide()">&#10094;</button>
-                <button onclick="nextSlide()">&#10095;</button>
+                <button>‹</button>
+                <button>›</button>
             </div>
             <div class="indicators">
                 <span class="active"></span>
@@ -217,6 +316,36 @@
             <li>Marketing Digital</li>
         </ul>
     </div>
+    <div id="portfolio" class="container portfolio">
+        <h2>Portfólio</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item"><img src="https://via.placeholder.com/400x300?text=Projeto+1" alt="Projeto 1"></div>
+            <div class="portfolio-item"><img src="https://via.placeholder.com/400x300?text=Projeto+2" alt="Projeto 2"></div>
+            <div class="portfolio-item"><img src="https://via.placeholder.com/400x300?text=Projeto+3" alt="Projeto 3"></div>
+            <div class="portfolio-item"><img src="https://via.placeholder.com/400x300?text=Projeto+4" alt="Projeto 4"></div>
+            <div class="portfolio-item"><img src="https://via.placeholder.com/400x300?text=Projeto+5" alt="Projeto 5"></div>
+        </div>
+    </div>
+    <div id="blog" class="container blog">
+        <h2>Blog</h2>
+        <div class="blog-articles">
+            <div class="blog-article">
+                <h3>Artigo 1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt urna eu orci dignissim, nec pretium ligula efficitur.</p>
+            </div>
+            <div class="blog-article">
+                <h3>Artigo 2</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt urna eu orci dignissim, nec pretium ligula efficitur.</p>
+            </div>
+            <div class="blog-article">
+                <h3>Artigo 3</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt urna eu orci dignissim, nec pretium ligula efficitur.</p>
+            </div>
+        </div>
+        <div class="load-more">
+            <button id="loadMore">Carregar Mais</button>
+        </div>
+    </div>
     <div id="testimonials" class="container testimonials">
         <h2>O que nossos clientes dizem</h2>
         <blockquote>
@@ -235,24 +364,22 @@
             <input type="email" name="email" id="email" placeholder="Seu Email" required>
             <textarea name="message" id="message" rows="5" placeholder="Sua Mensagem" required></textarea>
             <button type="submit">Enviar Mensagem</button>
-		<p> </p>
-		<p> </p>
-		<p>- </p>
         </form>
     </div>
     <footer>
-        &copy; 2024 Meu Site Interativo. Todos os direitos reservados. para liedson
+        <p>&copy; 2024 Meu Site Profissional. Todos os direitos reservados.</p>
     </footer>
 
     <script>
         let currentSlide = 0;
-        const slides = document.querySelector('.slides');
-        const slideCount = document.querySelectorAll('.slide').length;
+        const slides = document.querySelectorAll('.slide');
+        const slideCount = slides.length;
         const indicators = document.querySelectorAll('.indicators span');
 
         function showSlide(index) {
-            const offset = -index * 100;
-            slides.style.transform = `translateX(${offset}%)`;
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
             indicators.forEach((indicator, i) => {
                 indicator.classList.toggle('active', i === index);
             });
@@ -268,9 +395,15 @@
             showSlide(currentSlide);
         }
 
-        document.querySelector('.button-container .button').addEventListener('click', nextSlide);
+        document.querySelector('.nav-buttons').addEventListener('click', (event) => {
+            if (event.target.textContent === '›') {
+                nextSlide();
+            } else if (event.target.textContent === '‹') {
+                prevSlide();
+            }
+        });
 
-        setInterval(nextSlide, 5000);
+        setInterval(nextSlide, 5000); // Change slide every 5 seconds
 
         function validateForm() {
             const name = document.getElementById('name').value;
@@ -296,10 +429,28 @@
             return re.test(email);
         }
 
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slideCount) % slideCount;
-            showSlide(currentSlide);
-        }
+        document.getElementById('loadMore').addEventListener('click', () => {
+            const newArticles = `
+                <div class="blog-article">
+                    <h3>Artigo 4</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt urna eu orci dignissim, nec pretium ligula efficitur.</p>
+                </div>
+                <div class="blog-article">
+                    <h3>Artigo 5</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt urna eu orci dignissim, nec pretium ligula efficitur.</p>
+                </div>
+            `;
+            document.querySelector('.blog-articles').insertAdjacentHTML('beforeend', newArticles);
+        });
+
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
     </script>
 </body>
 </html>
