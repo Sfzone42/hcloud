@@ -1,246 +1,186 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arquivo TXT Convertido</title>
+    <title>Site Interativo</title>
     <style>
         body {
-            font-family: Lucida Console;
-            font-size: 16px;
-            background-color: #f4f4f4;
-            color: #333;
-            line-height: 1.6;
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 14px;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+            scroll-behavior: smooth;
         }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
         }
-        h1, h2, h3 {
-            color: #2c3e50;
+        nav {
+            margin: 10px 0;
         }
-        h1 {
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
+        nav a {
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
         }
-        p {
-            margin: 15px 0;
-        }
-        .code {
-            background-color: #2d2d2d;
-            color: #f8f8f2;
-            padding: 4px;
-            border-radius: 4px;
-            font-family: "Courier New", Courier, monospace;
-            overflow-x: auto;
-            font-size: 15px;
-        }
-        .code .comment {
-            color: #75715e;
-        }
-        .code .keyword {
-            color: #66d9ef;
-        }
-        .code .string {
-            color: #e6db74;
-        }
-        .code .function {
-            color: #a6e22e;
-        }
-        .code .type {
-            color: #f92672;
-        }
-        .note {
-            background-color: #e7f3fe;
-            color: #31708f;
-            padding: 10px;
-            border-left: 4px solid #3498db;
-            margin: 14px 0;
+        nav a:hover {
+            background-color: #45a049;
             border-radius: 5px;
         }
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-            color: #888;
-            font-size: 12px;
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 80px;
         }
-        hr {
-            border: 0;
-            border-top: 2px solid #333;
+        h1 {
+            color: #4CAF50;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .slider {
+            position: relative;
+            max-width: 100%;
             margin: 20px 0;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+        .slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: auto;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .contact-form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .contact-form button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>BIG-ser</h1>
+        <h1>Meu Site Interativo</h1>
+        <nav>
+            <a href="#home">Início</a>
+            <a href="#about">Sobre</a>
+            <a href="#services">Serviços</a>
+            <a href="#contact">Contato</a>
+        </nav>
     </header>
-    <div class="container">
-    <h2>Sujeito: Sistema de Conexão e Gerenciamento de Clientes com Controle de Acesso</h2>
-    <p><strong></strong></p>
-    <h2> Objetivo:</h2>
-    <p>Implemente um sistema em C que permita a comunicação entre um servidor e vários clientes, onde o servidor tem a capacidade de gerenciar conexões de clientes, bloquear e desbloquear usuários, criar e apagar usuários, e criar APIs que os clientes podem acessar. O servidor deve ter um usuário root com permissões completas para gerenciamento e controle.</p>
-    <p><strong></strong></p>
-    <h2> Instruções:</h2>
-    <p><strong></strong></p>
-    <h2>1. Estrutura do Sistema:</h2>
-    <ul>
-        <li>Servidor:</li>
-    </ul>
-    <ul>
-        <li>Deve aceitar conexões de múltiplos clientes.</li>
-    </ul>
-    <ul>
-        <li>Deve ter um usuário root que pode executar comandos administrativos (bloquear/desbloquear usuários, criar/apagar usuários, criar APIs).</li>
-    </ul>
-    <ul>
-        <li>Deve permitir a criação de APIs que clientes podem acessar, com controle de acesso baseado em permissões.</li>
-    </ul>
-    <p><strong></strong></p>
-    <ul>
-        <li>Cliente:</li>
-    </ul>
-    <ul>
-        <li>Deve conectar-se ao servidor e enviar comandos.</li>
-    </ul>
-    <ul>
-        <li>Deve permitir ao usuário se autenticar e executar ações permitidas com base em suas permissões.</li>
-    </ul>
-    <p><strong></strong></p>
-    <h2>2. Operações Suportadas:</h2>
-    <p><strong></strong></p>
-    <ul>
-        <li>Servidor:</li>
-    </ul>
-    <ul>
-        <li>start_server(port): Inicia o servidor na porta especificada e aguarda conexões de clientes.</li>
-    </ul>
-    <ul>
-        <li>accept_client(): Aceita uma nova conexão de um cliente.</li>
-    </ul>
-    <ul>
-        <li>authenticate_user(client_socket, username, password): Autentica um cliente com base no nome de usuário e senha.</li>
-    </ul>
-    <ul>
-        <li>block_user(username): Bloqueia um usuário para que ele não possa se conectar.</li>
-    </ul>
-    <ul>
-        <li>unblock_user(username): Desbloqueia um usuário, permitindo que ele se conecte novamente.</li>
-    </ul>
-    <ul>
-        <li>create_user(username, password, permissions): Cria um novo usuário com permissões específicas.</li>
-    </ul>
-    <ul>
-        <li>delete_user(username): Apaga um usuário do sistema.</li>
-    </ul>
-    <ul>
-        <li>create_api(endpoint, handler): Cria uma nova API no servidor.</li>
-    </ul>
-    <ul>
-        <li>grant_access(api, username): Concede acesso a uma API específica para um usuário.</li>
-    </ul>
-    <ul>
-        <li>revoke_access(api, username): Revoga o acesso a uma API específica para um usuário.</li>
-    </ul>
-    <p><strong></strong></p>
-    <ul>
-        <li>Cliente:</li>
-    </ul>
-    <ul>
-        <li>connect_to_server(server_ip, port): Conecta-se ao servidor.</li>
-    </ul>
-    <ul>
-        <li>send_command(command): Envia um comando para o servidor.</li>
-    </ul>
-    <ul>
-        <li>receive_response(): Recebe a resposta do servidor.</li>
-    </ul>
-    <p><strong></strong></p>
-    <h2>3. Implementação:</h2>
-    <p><strong></strong></p>
-    <ul>
-        <li>Servidor:</li>
-    </ul>
-    <ul>
-        <li>Utilize sockets para gerenciar conexões de clientes.</li>
-    </ul>
-    <ul>
-        <li>Implemente um sistema de autenticação e autorização para garantir que apenas usuários autorizados (incluindo o root) possam executar comandos administrativos.</li>
-    </ul>
-    <ul>
-        <li>Mantenha uma lista de usuários, seus status (bloqueado/desbloqueado), e permissões.</li>
-    </ul>
-    <ul>
-        <li>Implemente a criação e gerenciamento de APIs, garantindo que apenas usuários autorizados possam acessar determinadas APIs.</li>
-    </ul>
-    <p><strong></strong></p>
-    <ul>
-        <li>Cliente:</li>
-    </ul>
-    <ul>
-        <li>Conecte-se ao servidor e implemente uma interface para que o usuário possa digitar comandos.</li>
-    </ul>
-    <ul>
-        <li>O cliente deve lidar com autenticação e exibir mensagens de erro se o usuário não tiver permissão para executar um comando.</li>
-    </ul>
-    <p><strong></strong></p>
-    <p><strong></strong></p>
-    <p><strong></strong></p>
-        <pre class="code"><code>
-            4. Exemplo de Execução:
-            
-            - Servidor:
-            - Iniciar servidor: `start_server(8080)`
-            - Criar usuário: `create_user(&quot;john_doe&quot;, &quot;password123&quot;, &quot;user&quot;)`
-            - Bloquear usuário: `block_user(&quot;john_doe&quot;)`
-            - Criar API: `create_api(&quot;/get_data&quot;, handle_get_data)`
-            - Conceder acesso à API: `grant_access(&quot;/get_data&quot;, &quot;john_doe&quot;)`
-            
-            - Cliente:
-            - Conectar ao servidor: `connect_to_server(&quot;110.0.0.7&quot;, 8080)`
-            - Autenticar: `send_command(&quot;AUTH john_doe password123&quot;)`
-            - Enviar comando: `send_command(&quot;GET /get_data&quot;)`
-            - Receber resposta: receive_response() // Outputs: &quot;Data: [...]&quot;
-        </code></pre>
-    <p><strong></strong></p>
-    <p>5. Restrições:</p>
-    <ul>
-        <li>A aplicação deve ser implementada em C e utilizar sockets para a comunicação.</li>
-    </ul>
-    <ul>
-        <li>O sistema deve ter um controle de acesso robusto para garantir que apenas usuários autorizados possam executar comandos administrativos.</li>
-    </ul>
-    <ul>
-        <li>A implementação deve permitir a criação e gerenciamento de APIs, bem como o controle de acesso a essas APIs.</li>
-    </ul>
-    <p><strong></strong></p>
-    <h2> Critérios de Avaliação:</h2>
-    <ul>
-        <li>Correção: O sistema deve funcionar corretamente, com autenticação e autorização funcionando como esperado.</li>
-    </ul>
-    <ul>
-        <li>Segurança: O sistema deve garantir que apenas usuários autorizados possam executar comandos administrativos e acessar APIs.</li>
-    </ul>
-    <ul>
-        <li>Eficiência: O servidor deve gerenciar eficientemente múltiplas conexões e operações simultâneas.</li>
-    </ul>
-    <ul>
-        <li>Organização: O código deve ser bem estruturado, com funções separadas para diferentes operações e um controle claro de permissões.</li>
-    </ul>
-    <p><strong></strong></p>
-    <h2> Submissão:</h2>
-    <ul>
-        <li>Submeta dois arquivos: ```server.c``` para a implementação do servidor e ```client.c``` para a implementação do cliente.</li>
-    </ul>
-    <ul>
-        <li>Inclua header no início de cada arquivo.</li>
-    </ul>
+    <div id="home" class="container">
+        <h2>Bem-vindo ao Meu Site</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla interdum mauris eu erat gravida, id sollicitudin sem condimentum.</p>
+
+        <div class="slider">
+            <div class="slides">
+                <div class="slide"><img src="https://drive.google.com/file/d/1TyQd_GM6FcqG2VAhciw2Ar7BsyahFo1A/view?usp=drive_link" alt="Imagem 1"></div>
+                <div class="slide"><img src="https://drive.google.com/file/d/1I7-ck8Qdvtc9vEjxe_VKjPuRMw0Lcii-/view?usp=drive_link" alt="Imagem 2"></div>
+                <div class="slide"><img src="https://drive.google.com/file/d/10QocciI1UT1OUBEGB9ne8J3J8omd42NQ/view?usp=drive_link" alt="Imagem 3"></div>
+            </div>
+        </div>
+        <div class="button-container">
+            <button class="button" onclick="nextSlide()">Próximo</button>
+        </div>
     </div>
+    <div id="about" class="container">
+        <h2>Sobre Nós</h2>
+        <p>Curabitur convallis, justo eu aliquam hendrerit, erat leo bibendum purus, at auctor dui odio nec urna. Phasellus nec sapien et libero cursus interdum.</p>
+    </div>
+    <div id="services" class="container">
+        <h2>Serviços</h2>
+        <p>Nam at bibendum orci. Suspendisse potenti. In scelerisque ligula vitae est scelerisque bibendum. Donec fermentum dui at sapien vehicula.</p>
+    </div>
+    <div id="contact" class="container">
+        <h2>Contato</h2>
+        <form class="contact-form">
+            <input type="text" name="name" placeholder="Seu Nome" required>
+            <input type="email" name="email" placeholder="Seu Email" required>
+            <textarea name="message" rows="5" placeholder="Sua Mensagem" required></textarea>
+            <button type="submit">Enviar Mensagem</button>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2024 Meu Site Interativo. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelector('.slides');
+        const slideCount = document.querySelectorAll('.slide').length;
+
+        function showSlide(index) {
+            const offset = -index * 100;
+            slides.style.transform = `translateX(${offset}%)`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slideCount;
+            showSlide(currentSlide);
+        }
+
+        setInterval(nextSlide, 3000);
+    </script>
 </body>
 </html>
