@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquivo TXT Convertido</title>
+    <style>
+        body {
+            font-family: Lucida Console;
+            font-size: 16px;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 14px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        p {
+            margin: 15px 0;
+        }
+        .code {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 4px;
+            border-radius: 4px;
+            font-family: "Courier New", Courier, monospace;
+            overflow-x: auto;
+            font-size: 15px;
+        }
+        .code .comment {
+            color: #75715e;
+        }
+        .code .keyword {
+            color: #66d9ef;
+        }
+        .code .string {
+            color: #e6db74;
+        }
+        .code .function {
+            color: #a6e22e;
+        }
+        .code .type {
+            color: #f92672;
+        }
+        .note {
+            background-color: #e7f3fe;
+            color: #31708f;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+            margin: 14px 0;
+            border-radius: 5px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            font-size: 12px;
+        }
+        hr {
+            border: 0;
+            border-top: 2px solid #333;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BIG-ser</h1>
+    </header>
+    <div class="container">
+    <h2>Sujeito: Sistema de Conexão e Gerenciamento de Clientes com Controle de Acesso</h2>
+    <p><strong></strong></p>
+    <h2> Objetivo:</h2>
+    <p>Implemente um sistema em C que permita a comunicação entre um servidor e vários clientes, onde o servidor tem a capacidade de gerenciar conexões de clientes, bloquear e desbloquear usuários, criar e apagar usuários, e criar APIs que os clientes podem acessar. O servidor deve ter um usuário root com permissões completas para gerenciamento e controle.</p>
+    <p><strong></strong></p>
+    <h2> Instruções:</h2>
+    <p><strong></strong></p>
+    <h2>1. Estrutura do Sistema:</h2>
+    <ul>
+        <li>Servidor:</li>
+    </ul>
+    <ul>
+        <li>Deve aceitar conexões de múltiplos clientes.</li>
+    </ul>
+    <ul>
+        <li>Deve ter um usuário root que pode executar comandos administrativos (bloquear/desbloquear usuários, criar/apagar usuários, criar APIs).</li>
+    </ul>
+    <ul>
+        <li>Deve permitir a criação de APIs que clientes podem acessar, com controle de acesso baseado em permissões.</li>
+    </ul>
+    <p><strong></strong></p>
+    <ul>
+        <li>Cliente:</li>
+    </ul>
+    <ul>
+        <li>Deve conectar-se ao servidor e enviar comandos.</li>
+    </ul>
+    <ul>
+        <li>Deve permitir ao usuário se autenticar e executar ações permitidas com base em suas permissões.</li>
+    </ul>
+    <p><strong></strong></p>
+    <h2>2. Operações Suportadas:</h2>
+    <p><strong></strong></p>
+    <ul>
+        <li>Servidor:</li>
+    </ul>
+    <ul>
+        <li>start_server(port): Inicia o servidor na porta especificada e aguarda conexões de clientes.</li>
+    </ul>
+    <ul>
+        <li>accept_client(): Aceita uma nova conexão de um cliente.</li>
+    </ul>
+    <ul>
+        <li>authenticate_user(client_socket, username, password): Autentica um cliente com base no nome de usuário e senha.</li>
+    </ul>
+    <ul>
+        <li>block_user(username): Bloqueia um usuário para que ele não possa se conectar.</li>
+    </ul>
+    <ul>
+        <li>unblock_user(username): Desbloqueia um usuário, permitindo que ele se conecte novamente.</li>
+    </ul>
+    <ul>
+        <li>create_user(username, password, permissions): Cria um novo usuário com permissões específicas.</li>
+    </ul>
+    <ul>
+        <li>delete_user(username): Apaga um usuário do sistema.</li>
+    </ul>
+    <ul>
+        <li>create_api(endpoint, handler): Cria uma nova API no servidor.</li>
+    </ul>
+    <ul>
+        <li>grant_access(api, username): Concede acesso a uma API específica para um usuário.</li>
+    </ul>
+    <ul>
+        <li>revoke_access(api, username): Revoga o acesso a uma API específica para um usuário.</li>
+    </ul>
+    <p><strong></strong></p>
+    <ul>
+        <li>Cliente:</li>
+    </ul>
+    <ul>
+        <li>connect_to_server(server_ip, port): Conecta-se ao servidor.</li>
+    </ul>
+    <ul>
+        <li>send_command(command): Envia um comando para o servidor.</li>
+    </ul>
+    <ul>
+        <li>receive_response(): Recebe a resposta do servidor.</li>
+    </ul>
+    <p><strong></strong></p>
+    <h2>3. Implementação:</h2>
+    <p><strong></strong></p>
+    <ul>
+        <li>Servidor:</li>
+    </ul>
+    <ul>
+        <li>Utilize sockets para gerenciar conexões de clientes.</li>
+    </ul>
+    <ul>
+        <li>Implemente um sistema de autenticação e autorização para garantir que apenas usuários autorizados (incluindo o root) possam executar comandos administrativos.</li>
+    </ul>
+    <ul>
+        <li>Mantenha uma lista de usuários, seus status (bloqueado/desbloqueado), e permissões.</li>
+    </ul>
+    <ul>
+        <li>Implemente a criação e gerenciamento de APIs, garantindo que apenas usuários autorizados possam acessar determinadas APIs.</li>
+    </ul>
+    <p><strong></strong></p>
+    <ul>
+        <li>Cliente:</li>
+    </ul>
+    <ul>
+        <li>Conecte-se ao servidor e implemente uma interface para que o usuário possa digitar comandos.</li>
+    </ul>
+    <ul>
+        <li>O cliente deve lidar com autenticação e exibir mensagens de erro se o usuário não tiver permissão para executar um comando.</li>
+    </ul>
+    <p><strong></strong></p>
+    <p><strong></strong></p>
+    <p><strong></strong></p>
+        <pre class="code"><code>
+            4. Exemplo de Execução:
+            
+            - Servidor:
+            - Iniciar servidor: `start_server(8080)`
+            - Criar usuário: `create_user(&quot;john_doe&quot;, &quot;password123&quot;, &quot;user&quot;)`
+            - Bloquear usuário: `block_user(&quot;john_doe&quot;)`
+            - Criar API: `create_api(&quot;/get_data&quot;, handle_get_data)`
+            - Conceder acesso à API: `grant_access(&quot;/get_data&quot;, &quot;john_doe&quot;)`
+            
+            - Cliente:
+            - Conectar ao servidor: `connect_to_server(&quot;110.0.0.7&quot;, 8080)`
+            - Autenticar: `send_command(&quot;AUTH john_doe password123&quot;)`
+            - Enviar comando: `send_command(&quot;GET /get_data&quot;)`
+            - Receber resposta: receive_response() // Outputs: &quot;Data: [...]&quot;
+        </code></pre>
+    <p><strong></strong></p>
+    <p>5. Restrições:</p>
+    <ul>
+        <li>A aplicação deve ser implementada em C e utilizar sockets para a comunicação.</li>
+    </ul>
+    <ul>
+        <li>O sistema deve ter um controle de acesso robusto para garantir que apenas usuários autorizados possam executar comandos administrativos.</li>
+    </ul>
+    <ul>
+        <li>A implementação deve permitir a criação e gerenciamento de APIs, bem como o controle de acesso a essas APIs.</li>
+    </ul>
+    <p><strong></strong></p>
+    <h2> Critérios de Avaliação:</h2>
+    <ul>
+        <li>Correção: O sistema deve funcionar corretamente, com autenticação e autorização funcionando como esperado.</li>
+    </ul>
+    <ul>
+        <li>Segurança: O sistema deve garantir que apenas usuários autorizados possam executar comandos administrativos e acessar APIs.</li>
+    </ul>
+    <ul>
+        <li>Eficiência: O servidor deve gerenciar eficientemente múltiplas conexões e operações simultâneas.</li>
+    </ul>
+    <ul>
+        <li>Organização: O código deve ser bem estruturado, com funções separadas para diferentes operações e um controle claro de permissões.</li>
+    </ul>
+    <p><strong></strong></p>
+    <h2> Submissão:</h2>
+    <ul>
+        <li>Submeta dois arquivos: ```server.c``` para a implementação do servidor e ```client.c``` para a implementação do cliente.</li>
+    </ul>
+    <ul>
+        <li>Inclua header no início de cada arquivo.</li>
+    </ul>
+    </div>
+</body>
+</html>

@@ -1,15 +1,23 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: lhabacuc <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/08/30 15:52:49 by lhabacuc          #+#    #+#              #
-#    Updated: 2024/08/30 15:52:51 by lhabacuc         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+INCLUDES = -I.
+LDFLAGS = -L./hcloud
+LIBS = -lhcloud -lreadline
 
-all:
-	gcc -o test m.c -I. -L. -lhcloud -lreadline
-	./test
+SERVER_OBJS = server.o
+CLIENT_OBJS = client.o
+
+all: server client
+
+server: $(SERVER_OBJS)
+	$(CC) $(CFLAGS) $(INCLUDES) $(LDFLAGS) -o server $(SERVER_OBJS) $(LIBS)
+
+client: $(CLIENT_OBJS)
+	$(CC) $(CFLAGS) $(INCLUDES) $(LDFLAGS) -o client $(CLIENT_OBJS) $(LIBS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+clean:
+	rm -f *.o server client
+

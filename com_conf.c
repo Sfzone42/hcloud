@@ -198,7 +198,7 @@ void	serve_directory(int client_socket, const char *directory, const char *reque
 		const char *not_found_response = "HTTP/1.1 404 Not Found\r\n"
 		"Content-Type: text/html\r\n"
 		"\r\n"
-		"<html><body><h1>404 Not Found</h1></body></html>";
+		"<html><body><h1>404 Not Found liendson</h1></body></html>";
 		write(client_socket, not_found_response, strlen(not_found_response));
 		return;
 	}

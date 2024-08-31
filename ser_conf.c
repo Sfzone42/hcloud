@@ -12,7 +12,7 @@
 
 #include "hcloud.h"
 
-void	ceate_server_or(t_server *server)
+void	create_server_or(t_server *server)
 {
 	struct sockaddr_in server_addr;
 
@@ -42,7 +42,7 @@ void	ceate_server_or(t_server *server)
 	}
 }
 
-void	ceate_server(t_server *server, const char *ip)
+void	create_server(t_server *server, const char *ip)
 {
 	struct sockaddr_in server_addr;
 
@@ -212,7 +212,14 @@ void	process_request(int client_socket, const char *request)
 	close(client_socket);
 }
 
-void	http_request(int client_socket, const char *request)
+char	*if_dir(const char *d)
+{
+	if (!d)
+		return ("./www");
+	return ((char*)d);
+}
+
+void	http_request(int client_socket, const char *request, const char *dir)
 {
 	char *method;
 	char *path;
@@ -223,7 +230,7 @@ void	http_request(int client_socket, const char *request)
 	if (method && path)
 	{
 		if (strcmp(method, "GET") == 0)
-			serve_directory(client_socket, "./www", path);
+			serve_directory(client_socket, if_dir(dir), path);
 		else
 		{
 			snprintf(buffer, sizeof(buffer), "HTTP/1.1 405 Method Not Allowed\r\n\r\n");

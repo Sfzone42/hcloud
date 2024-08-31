@@ -57,14 +57,15 @@ typedef struct s_client
 /* client */
 void	configure_client(t_client *client, const char *server_ip);
 void	process_command(t_client *client, const char *command);
+void	http_send(t_client *client, const char *request);
 
 
 /* server */
-void	ceate_server(t_server *server, const char *ip);
+void	create_server(t_server *server, const char *ip);
 void	process_request(int client_socket, const char *request);
-void	http_request(int client_socket, const char *request);
+void	http_request(int client_socket, const char *request, const char *dir);
 void	process_message(int client_socket, const char *username, const char *message);
-void	ceate_server_or(t_server *server);
+void	create_server_or(t_server *server);
 void	request(int client_socket, const char *request);
 int		acess_client(t_server *server);
 
