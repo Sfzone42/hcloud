@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Interativo</title>
+    <title>Site Interativo e Robusto</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,7 +16,7 @@
         header {
             background-color: #4CAF50;
             color: white;
-            padding: 5px 5px;
+            padding: 15px 20px;
             text-align: center;
             position: fixed;
             width: 100%;
@@ -29,7 +29,7 @@
         }
         nav a {
             color: white;
-            padding: 5px 10px;
+            padding: 10px 20px;
             text-decoration: none;
             font-weight: bold;
         }
@@ -44,7 +44,7 @@
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 80px;
+            margin-top: 130px;
         }
         h1 {
             color: #4CAF50;
@@ -78,6 +78,41 @@
             height: auto;
             display: block;
         }
+        .slider .nav-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .slider .nav-buttons button {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .slider .nav-buttons button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .slider .indicators {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .slider .indicators span {
+            height: 10px;
+            width: 10px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        .slider .indicators .active {
+            background-color: #4CAF50;
+        }
         .button-container {
             text-align: center;
             margin: 20px 0;
@@ -90,6 +125,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            transition: background-color 0.3s ease;
         }
         .button:hover {
             background-color: #45a049;
@@ -104,6 +140,7 @@
             margin: 10px 0;
             border: 1px solid #ddd;
             border-radius: 5px;
+            box-sizing: border-box;
         }
         .contact-form button {
             background-color: #4CAF50;
@@ -113,9 +150,25 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            transition: background-color 0.3s ease;
         }
         .contact-form button:hover {
             background-color: #45a049;
+        }
+        .services, .testimonials {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .services h2, .testimonials h2 {
+            color: #4CAF50;
+        }
+        .testimonials blockquote {
+            border-left: 4px solid #4CAF50;
+            padding-left: 20px;
+            margin: 10px 0;
+            font-style: italic;
         }
     </style>
 </head>
@@ -126,11 +179,11 @@
             <a href="#home">Início</a>
             <a href="#about">Sobre</a>
             <a href="#services">Serviços</a>
+            <a href="#testimonials">Testemunhos</a>
             <a href="#contact">Contato</a>
         </nav>
     </header>
     <div id="home" class="container">
-    	 <h2> </h2>
         <h2>Bem-vindo ao Meu Site</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla interdum mauris eu erat gravida, id sollicitudin sem condimentum.</p>
 
@@ -140,40 +193,69 @@
                 <div class="slide"><img src="m42.jpg" alt="numero 2"></div>
                 <div class="slide"><img src="novo.jpg" alt="ano 3"></div>
             </div>
-        </div>
-        <div class="button-container">
-            <button class="button" onclick="nextSlide()">Próximo</button>
+            <div class="nav-buttons">
+                <button onclick="prevSlide()">&#10094;</button>
+                <button onclick="nextSlide()">&#10095;</button>
+            </div>
+            <div class="indicators">
+                <span class="active"></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </div>
     <div id="about" class="container">
         <h2>Sobre Nós</h2>
         <p>Curabitur convallis, justo eu aliquam hendrerit, erat leo bibendum purus, at auctor dui odio nec urna. Phasellus nec sapien et libero cursus interdum.</p>
     </div>
-    <div id="services" class="container">
+    <div id="services" class="container services">
         <h2>Serviços</h2>
         <p>Nam at bibendum orci. Suspendisse potenti. In scelerisque ligula vitae est scelerisque bibendum. Donec fermentum dui at sapien vehicula.</p>
+        <ul>
+            <li>Consultoria</li>
+            <li>Desenvolvimento Web</li>
+            <li>Marketing Digital</li>
+        </ul>
+    </div>
+    <div id="testimonials" class="container testimonials">
+        <h2>O que nossos clientes dizem</h2>
+        <blockquote>
+            <p>"Excelente serviço! A equipe foi muito profissional e atendeu todas as minhas necessidades. Recomendo a todos!"</p>
+            <footer>– Cliente Satisfeito</footer>
+        </blockquote>
+        <blockquote>
+            <p>"Fiquei impressionado com a qualidade do trabalho e o atendimento ao cliente. Definitivamente voltarei a usar seus serviços."</p>
+            <footer>– Outro Cliente Feliz</footer>
+        </blockquote>
     </div>
     <div id="contact" class="container">
         <h2>Contato</h2>
-        <form class="contact-form">
-            <input type="text" name="name" placeholder="Seu Nome" required>
-            <input type="email" name="email" placeholder="Seu Email" required>
-            <textarea name="message" rows="5" placeholder="Sua Mensagem" required></textarea>
+        <form class="contact-form" onsubmit="return validateForm()">
+            <input type="text" name="name" id="name" placeholder="Seu Nome" required>
+            <input type="email" name="email" id="email" placeholder="Seu Email" required>
+            <textarea name="message" id="message" rows="5" placeholder="Sua Mensagem" required></textarea>
             <button type="submit">Enviar Mensagem</button>
+		<p> </p>
+		<p> </p>
+		<p>- </p>
         </form>
     </div>
     <footer>
-        <p>&copy; 2024 Meu Site Interativo. Todos os direitos reservados.</p>
+        &copy; 2024 Meu Site Interativo. Todos os direitos reservados. para liedson
     </footer>
 
     <script>
         let currentSlide = 0;
         const slides = document.querySelector('.slides');
         const slideCount = document.querySelectorAll('.slide').length;
+        const indicators = document.querySelectorAll('.indicators span');
 
         function showSlide(index) {
             const offset = -index * 100;
             slides.style.transform = `translateX(${offset}%)`;
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === index);
+            });
         }
 
         function nextSlide() {
@@ -181,7 +263,44 @@
             showSlide(currentSlide);
         }
 
-        setInterval(nextSlide, 3000);
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+            showSlide(currentSlide);
+        }
+
+        document.querySelector('.button-container .button').addEventListener('click', nextSlide);
+
+        setInterval(nextSlide, 5000);
+
+        function validateForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (name === '' || email === '' || message === '') {
+                alert('Por favor, preencha todos os campos.');
+                return false;
+            }
+
+            if (!validateEmail(email)) {
+                alert('Por favor, insira um endereço de e-mail válido.');
+                return false;
+            }
+
+            alert('Mensagem enviada com sucesso!');
+            return true;
+        }
+
+        function validateEmail(email) {
+            const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return re.test(email);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+            showSlide(currentSlide);
+        }
     </script>
 </body>
 </html>
+
