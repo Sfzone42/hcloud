@@ -22,7 +22,7 @@ HCLOUD é uma biblioteca em C para facilitar a criação de um cliente e servido
 1. **Clone o repositório:**
 
    ```sh
-   git clone https://github.com/Sfzone42/hcloud.git
+   git clone https://github.com/lhabacuc/hcloud.git
    cd hcloud
    ```
 
@@ -118,6 +118,6 @@ Distribuído sob a Licença MIT. Veja `LICENSE` para mais informações.
 
 Seu Nome - [liedsonnhabacuc@example.com](em:lisvaldosf@example.com)
 
-Link do Repositório: [https://github.com/Sfzone42/hcloud](https://github.com/Sfzone42/hcloud)
+Link do Repositório: [https://github.com/lhabacuc/hcloud](https://github.com/lhabacuc/hcloud)
 ```
     -I. -L. -lhcloud -lreadline
