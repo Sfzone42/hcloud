@@ -18,7 +18,7 @@ void start_server()
     socklen_t client_len = sizeof(client_addr);
     int client_socket;
 
-    create_server(&server, "100.1.1.1");
+    create_server(&server, "100.1.1.1"); // recomendo usar a funcao create_server_or();
     printf("Servidor iniciado em 100.1.1.1 na porta %d\n", PORTP);
 
     while (1)
@@ -35,7 +35,7 @@ void start_server()
         if (received > 0)
         {
             request[received] = '\0';
-            http_request(client_socket, request);
+            http_request(client_socket, request, "./www");
         }
         else
         {
@@ -97,13 +97,13 @@ Certifique-se de que a estrutura de diretórios seja a seguinte:
 
 ```
 /projeto
-|__ www
-   |-- index.html
-|__ server.c
-|__ client.c
-|__ Makefile
-|__ libhcloud.a (ou os arquivos necessários para compilar a lib)
-|__ hcloud.h
+|___www
+	|-- index.html
+|___server.c
+|___client.c
+|___Makefile
+|___hlibcloud (a pasta da lib)
+	|__ hcloud.h
 ```
 
 ### Compilação e Execução:
